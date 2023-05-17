@@ -1,7 +1,8 @@
 const { Key, By, Builder } = require("selenium-webdriver");
 
-async function tc01() {
+const assert = require("assert");
 
+async function tc01() {
   let driver = await new Builder().forBrowser("firefox").build();
 
   await driver.get("https://lambdatest.github.io/sample-todo-app/");
@@ -10,9 +11,19 @@ async function tc01() {
     .findElement(By.id("sampletodotext"))
     .sendKeys("Learn Selenium", Key.RETURN);
 
+  //assert
+  let todoText = await driver
+    .findElement(By.xpath("//li[last()]"))
+    .getText()
+    .then(function (value) {
+      return value;
+    });
+
+  assert.strictEqual(todoText, "Learn Selenium");
+
   setInterval(function () {
     driver.quit();
-  }, 6000);
+  }, 2000);
 }
 
 tc01();
