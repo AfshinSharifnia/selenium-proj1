@@ -9,6 +9,7 @@
   "author": "ash",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
     "selenium-webdriver": "^4.9.2"
   }
 }

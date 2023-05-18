@@ -1,6 +1,6 @@
 const { Key, By, Builder } = require("selenium-webdriver");
-
 const assert = require("assert");
+var should = require("chai").should();
 
 async function tc01() {
   let driver = await new Builder().forBrowser("firefox").build();
@@ -18,12 +18,12 @@ async function tc01() {
     .then(function (value) {
       return value;
     });
+  //assert using node.js assertion
+  // assert.strictEqual(todoText, "Learn Selenium");
+  // assert using chai should
 
-  assert.strictEqual(todoText, "Learn Selenium");
-
-  setInterval(function () {
-    driver.quit();
-  }, 2000);
+  todoText.should.equal("Learn Selenium");
+  await driver.quit();
 }
 
 tc01();
